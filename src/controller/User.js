@@ -22,7 +22,7 @@ class UserController {
     const user = new userDTO(req.body)
     const { userRepository, accountRepository, cardRepository, salvarUsuario, saveAccount, saveCard } = this.di
 
-    if (!user.isValid()) return res.status(400).json({ 'message': 'não houve informações enviadas' })
+    if (!user.isValid()) return res.status(400).json({ 'message': 'Não houve informações enviadas' })
     try {
       const userCreated = await salvarUsuario({
         user, repository: userRepository
@@ -45,12 +45,12 @@ class UserController {
       const cardCreated = await saveCard({ card: firstCard, repository: cardRepository })
 
       res.status(201).json({
-        message: 'usuário criado com sucesso',
+        message: 'Usuário criado com sucesso',
         result: userCreated,
       })
     } catch (error) {
       console.log(error)
-      res.status(500).json({ message: 'caiu a aplicação' })
+      res.status(500).json({ message: 'Caiu a aplicação' })
     }
 
   }
