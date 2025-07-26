@@ -21,11 +21,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/user",
+					"raw": "localhost:8000/user",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "8000",
 					"path": [
 						"user"
 					]
@@ -48,11 +48,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/user/auth",
+					"raw": "localhost:8000/user/auth",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "8000",
 					"path": [
 						"user",
 						"auth"
@@ -79,11 +79,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/user",
+					"raw": "localhost:8000/user",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "8000",
 					"path": [
 						"user"
 					]
@@ -107,11 +107,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/account",
+					"raw": "localhost:8000/account",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "8000",
 					"path": [
 						"account"
 					]
@@ -144,11 +144,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/account/transaction",
+					"raw": "localhost:8000/account/transaction",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "8000",
 					"path": [
 						"account",
 						"transaction"
@@ -173,11 +173,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/account/67607133f840bb97892eb659/statement",
+					"raw": "localhost:8000/account/67607133f840bb97892eb659/statement",
 					"host": [
 						"localhost"
 					],
-					"port": "3000",
+					"port": "8000",
 					"path": [
 						"account",
 						"67607133f840bb97892eb659",

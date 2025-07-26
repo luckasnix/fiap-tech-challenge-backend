@@ -7,7 +7,7 @@ Rodando o projeto:
     docker build -t tech-challenge .
 
     # Executar o container
-    docker run -p 3000:3000 tech-challenge
+    docker run -p 8000:8000 tech-challenge
 
 - Sem docker
 
@@ -32,7 +32,7 @@ as rotas que necessitam de Autenticação você pode colar o Bearer token no cad
 ### Autenticando 
 
 #### Criando usuário
-    "http:localhost:3000/user"
+    "http:localhost:8000/user"
     body:
         {
             "username": "Aluno Carequinha",
@@ -42,7 +42,7 @@ as rotas que necessitam de Autenticação você pode colar o Bearer token no cad
 
     cURL
     ``` 
-        curl --location 'localhost:3000/user' \
+        curl --location 'localhost:8000/user' \
         --header 'Content-Type: application/json' \
         --data-raw '{
             "username": "Aluno Carequinha",
@@ -66,7 +66,7 @@ as rotas que necessitam de Autenticação você pode colar o Bearer token no cad
     ```
 
 #### Autenticando
-    "localhost:3000/user/auth"
+    "localhost:8000/user/auth"
     Body: 
         {
             "email": "teste@gmail.com",
@@ -74,7 +74,7 @@ as rotas que necessitam de Autenticação você pode colar o Bearer token no cad
         }
     cURL
     ```
-        curl --location 'localhost:3000/user/auth' \
+        curl --location 'localhost:8000/user/auth' \
         --header 'Content-Type: application/json' \
         --data-raw '{
             "email": "teste@gmail.com",
@@ -97,13 +97,13 @@ as rotas que necessitam de Autenticação você pode colar o Bearer token no cad
 ### Conta
 
 #### Buscando conta
-    "localhost:3000/account"
+    "localhost:8000/account"
 
     Authorization: Bearer {{Token}}
 
     cURL
     ```
-        curl --location 'localhost:3000/account' \
+        curl --location 'localhost:8000/account' \
         --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IklzcmFlbCAyIiwiZW1haWwiOiJ0ZXN0ZUBnbWFpbC5jb20iLCJwYXNzd29yZCI6InRlc3RlcyIsImlkIjoiNjc2MDcxMzNmODQwYmI5Nzg5MmViNjU3IiwiaWF0IjoxNzM0MzczNjg4LCJleHAiOjE3MzQ0MTY4ODh9.jtaRKSifN_j7rFWn1KkH5fykecwhXFW0G4wLqj24I-k'
     ```
     Retorno
@@ -156,7 +156,7 @@ as rotas que necessitam de Autenticação você pode colar o Bearer token no cad
     ```
 
 #### Criando Transação
-    "localhost:3000/account/transaction"
+    "localhost:8000/account/transaction"
 
     Body
 
@@ -171,7 +171,7 @@ as rotas que necessitam de Autenticação você pode colar o Bearer token no cad
 
     cURL
     ```
-        curl --location 'localhost:3000/account/transaction' \
+        curl --location 'localhost:8000/account/transaction' \
         --header 'Content-Type: application/json' \
         --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IklzcmFlbCAyIiwiZW1haWwiOiJ0ZXN0ZUBnbWFpbC5jb20iLCJwYXNzd29yZCI6InRlc3RlcyIsImlkIjoiNjc2MDcxMzNmODQwYmI5Nzg5MmViNjU3IiwiaWF0IjoxNzM0MzczNjg4LCJleHAiOjE3MzQ0MTY4ODh9.jtaRKSifN_j7rFWn1KkH5fykecwhXFW0G4wLqj24I-k' \
         --data '{
@@ -191,14 +191,14 @@ as rotas que necessitam de Autenticação você pode colar o Bearer token no cad
         }
 
 #### Buscando extrato
-    localhost:3000/account/{{accountId}}/statement
+    localhost:8000/account/{{accountId}}/statement
 
     Authorization Bearer {{Token}}
     Param:
         accountId
 
     ```
-        curl --location 'localhost:3000/account/67607133f840bb97892eb659/statement' \
+        curl --location 'localhost:8000/account/67607133f840bb97892eb659/statement' \
         --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IklzcmFlbCAyIiwiZW1haWwiOiJ0ZXN0ZUBnbWFpbC5jb20iLCJwYXNzd29yZCI6InRlc3RlcyIsImlkIjoiNjc2MDcxMzNmODQwYmI5Nzg5MmViNjU3IiwiaWF0IjoxNzM0MzczNjg4LCJleHAiOjE3MzQ0MTY4ODh9.jtaRKSifN_j7rFWn1KkH5fykecwhXFW0G4wLqj24I-k'
     ```
 
