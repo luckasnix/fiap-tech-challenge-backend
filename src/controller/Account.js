@@ -24,7 +24,7 @@ class AccountController {
     const { accountRepository, getAccount, getCard, getTransaction, transactionRepository, cardRepository } = this.di
 
     try {
-      const userId =   req.user.id
+      const userId = req.user.id
       const account = await getAccount({ repository: accountRepository,  filter: { userId } })
       const transactions = await getTransaction({ filter: { accountId: account[0].id }, repository: transactionRepository })
       const cards = await getCard({ filter: { accountId: account[0].id }, repository: cardRepository })
@@ -46,30 +46,51 @@ class AccountController {
   }
 
   async createTransaction(req, res) {
-    const { saveTransaction, transactionRepository } = this.di
-    const { accountId, value, type, from, to, anexo } = req.body
-    const transactionDTO = new TransactionDTO({ accountId, value, from, to, anexo, type, date: new Date() })
+    const { saveTransaction, transactionRepository, getAccount, accountRepository } = this.di;
+    const { value, type, from, to, anexo } = req.body;
+    const { id: userId } = req.user;
 
-    const transaction = await saveTransaction({ transaction: transactionDTO, repository: transactionRepository })
-    
-    res.status(201).json({
-      message: 'Transação criada com sucesso',
-      result: transaction
-    })
+    try {
+      const [account] = await getAccount({ repository: accountRepository, filter: { userId } });
+
+      if (!account) {
+        return res.status(404).json({ message: 'Conta do usuário não encontrada.' });
+      }
+
+      const transactionDTO = new TransactionDTO({ accountId: account.id, value, from, to, anexo, type, date: new Date() });
+
+      const transaction = await saveTransaction({ transaction: transactionDTO, repository: transactionRepository });
+
+      res.status(201).json({
+        message: 'Transação criada com sucesso',
+        result: transaction
+      });
+    } catch (error) {
+      res.status(500).json({ message: 'Erro ao criar transação.' });
+    }
   }
 
   async getStatment(req, res) {
-    const { getTransaction, transactionRepository } = this.di
+    const { getTransaction, transactionRepository, getAccount, accountRepository } = this.di
+    const { id: userId } = req.user;
 
-    const { accountId } = req.params
+    try {
+      const [account] = await getAccount({ repository: accountRepository, filter: { userId } });
 
-    const transactions = await getTransaction({ filter: { accountId } ,  repository: transactionRepository})
-    res.status(201).json({
-      message: 'Transação criada com sucesso',
-      result: {
-        transactions
+      if (!account) {
+        return res.status(404).json({ message: 'Conta do usuário não encontrada.' });
       }
-    })
+      const transactions = await getTransaction({ filter: { accountId: account.id } ,  repository: transactionRepository})
+      res.status(200).json({
+        message: 'Lista de transações encontrada',
+        result: {
+          transactions
+        }
+      })
+    }catch (error) {
+      res.status(500).json({ message: 'Erro ao criar transação.' });
+    }
+
   }
 }
 
