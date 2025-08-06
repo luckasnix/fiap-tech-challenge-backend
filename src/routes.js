@@ -52,6 +52,6 @@ router.post('/account/transaction', accountController.createTransaction.bind(acc
  *       401:
  *         description: Token invalido
  */
-router.get('/account/:accountId/statement', accountController.getStatment.bind(accountController))
+router.get('/account/statement', accountController.getStatment.bind(accountController))
 
 module.exports = router
